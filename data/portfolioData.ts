@@ -159,7 +159,7 @@ export const projects: Project[] = [
       "A product-focused platform for scoring, sorting, and prioritizing feature requests using the RICE framework with editable inputs, filtering, and a clean decision-making workflow.",
     tech: ["React", "Node.js", "Express", "SQLite"],
     image:
-      "/images/projects/RICE2.jpg",
+      "/images/projects/RICE2.JPG",
     type: "personal",
     github: "https://github.com/Shaqayeq6/rice-feature-prioritizer.git",
   },
