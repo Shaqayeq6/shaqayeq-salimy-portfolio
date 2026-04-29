@@ -172,7 +172,7 @@ export const projects: Project[] = [
       "A campus navigation app that helps students search buildings, explore locations, and launch directions in Google Maps with a streamlined mobile-first experience.",
     tech: ["Flutter", "Dart", "SQLite", "Google Maps"],
     image:
-      "/images/projects/YorkU.jpg",
+      "/images/projects/YorkU.JPG",
       type: "personal",
     github: "https://github.com/Shaqayeq6/yorku-campus-navigator.git",
   },
@@ -288,13 +288,13 @@ export const joys: JoyItem[] = [
     description:
       "I enjoy hiking on trails with friends, fresh air, long walks and the kind of energy that only comes from being out in nature.",
     image:
-      "/images/hiking2.JPG",
+      "/images/hiking2.jpg",
   },
   {
   title: "Farsi Books & Poetry",
   description:
     "Reading Farsi literature and getting lost in the poetry is a soothing experience, it feels like an escape in itself, bringing a kind of depth and feeling that’s hard to find anywhere else.",
-  image: "/images/farsi-books.JPG",
+  image: "/images/farsi-books.jpg",
   poem: [
     "این یک دو سه روز نوبت عمر گذشت",
     "چون آب به جویبار و چون باد گذشت",
