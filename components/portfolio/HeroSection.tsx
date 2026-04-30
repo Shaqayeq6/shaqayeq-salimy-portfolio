@@ -85,9 +85,7 @@ export default function HeroSection({
             className="max-w-2xl text-base leading-9"
             style={{ color: currentTheme.textSoft }}
           >
-            I design and build thoughtful digital experiences across web,
-            mobile, and full-stack development with a strong focus on clean UI,
-            practical systems, and polished interaction.
+            I design and build scalable software systems across web, mobile, and backend environments, with a strong focus on clean architecture, practical solutions, and intuitive user experiences.
           </p>
           </RevealLeft>
 

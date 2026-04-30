@@ -57,16 +57,12 @@ export default function AboutSection({
           style={{ color: currentTheme.textSoft }}
         >
           <p>
-            I am a Computer Science graduate from York University with interests in
-            full-stack development, user interface design, and building
-            practical applications that improve user experiences.
+         I am a Computer Science graduate from York University with interests in software engineering, backend systems, and application design. 
           </p>
 
           <p>
-            My projects reflect a mix of front-end design, backend logic,
-            database integration, and mobile development. I enjoy turning ideas
-            into polished, usable products while continuously improving both my
-            technical and design skills.
+           My projects reflect a mix of front-end design, backend logic, database integration, and mobile development. I enjoy turning ideas into polished, usable products while continuously
+         improving both my technical and problem-solving skills. 
           </p>
         </div>
         </RevealLeft>
@@ -80,7 +76,7 @@ export default function AboutSection({
           className="overflow-hidden rounded-[2rem] border shadow-xl"
         >
           <img
-            src="/images/graduation.png"
+            src="/images/about.png"
             alt="Graduation"
             className="h-[28rem] w-full object-cover"
           />
