@@ -260,6 +260,7 @@ export const experiences: ExperienceItem[] = [
 
 export const skills: SkillItem[] = [
   { name: "Java",       icon: "https://cdn.simpleicons.org/openjdk/ffffff",    group: "Languages", color: "#f89820" },
+  { name: "Spring Boot", icon: "https://cdn.simpleicons.org/springboot/ffffff", group: "Backend", color: "#6DB33F" },
   { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/ffffff", group: "Languages", color: "#F7DF1E" },
    { name: "C",          icon: "https://cdn.simpleicons.org/c/ffffff",          group: "Languages", color: "#A8B9CC" },
   { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/ffffff", group: "Languages", color: "#3178C6" },
