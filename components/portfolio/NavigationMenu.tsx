@@ -34,18 +34,17 @@ export default function NavigationMenu({
       style={{
         background: `linear-gradient(
           180deg,
-          ${currentTheme.background}F2 0%,
-          ${currentTheme.sidePanel}F4 100%
+          ${currentTheme.background}F7 0%,
+          ${currentTheme.sidePanel}F8 100%
         )`,
         color: currentTheme.text,
         borderColor: currentTheme.border,
         boxShadow: menuOpen
-          ? "-16px 0 50px rgba(0,0,0,0.18)"
-          : "-6px 0 24px rgba(0,0,0,0.10)",
+          ? "-12px 0 38px rgba(0,0,0,0.16)"
+          : "-5px 0 18px rgba(0,0,0,0.10)",
       }}
     >
       <div className="flex h-full flex-col">
-        {/* Collapse / expand control */}
         <div
           className={`flex h-20 shrink-0 items-center ${
             menuOpen ? "justify-end px-4" : "justify-center"
@@ -57,12 +56,12 @@ export default function NavigationMenu({
             onClick={() => setMenuOpen((prev) => !prev)}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="group flex h-10 w-10 items-center justify-center rounded-full border"
+            className="flex h-10 w-10 items-center justify-center rounded-full border"
             style={{
               borderColor: currentTheme.border,
               background: currentTheme.surface,
               color: currentTheme.textSoft,
-              boxShadow: `0 0 0 1px ${currentTheme.surfaceSoft}, 0 8px 24px rgba(0,0,0,0.14)`,
+              boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
             }}
           >
             <motion.svg
@@ -85,39 +84,37 @@ export default function NavigationMenu({
           {menuOpen && (
             <motion.div
               key="expanded-navigation"
-              initial={{ opacity: 0, x: 12 }}
+              initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 12 }}
+              exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.18 }}
               className="flex min-h-0 flex-1 flex-col px-5 pb-6"
             >
-              <div>
-                <p
-                  className="text-[10px] uppercase tracking-[0.28em]"
-                  style={{ color: currentTheme.textMuted }}
-                >
-                  Navigation
-                </p>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em]"
+                style={{ color: currentTheme.textMuted }}
+              >
+                Navigation
+              </p>
 
-                <nav className="mt-6 flex flex-col gap-1">
-                  {navigationItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="group relative rounded-xl px-3 py-2.5 text-base font-light transition duration-200"
-                      style={{ color: currentTheme.text }}
-                    >
-                      <span
-                        className="absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100"
-                        style={{ background: currentTheme.surface }}
-                      />
-                      <span className="relative block transition-transform duration-200 group-hover:translate-x-1">
-                        {item.label}
-                      </span>
-                    </a>
-                  ))}
-                </nav>
-              </div>
+              <nav className="mt-6 flex flex-col gap-1">
+                {navigationItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="group relative rounded-xl px-3 py-2.5 text-base font-light transition duration-200"
+                    style={{ color: currentTheme.text }}
+                  >
+                    <span
+                      className="absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100"
+                      style={{ background: currentTheme.surface }}
+                    />
+                    <span className="relative block transition-transform duration-200 group-hover:translate-x-1">
+                      {item.label}
+                    </span>
+                  </a>
+                ))}
+              </nav>
 
               <div
                 className="mt-auto border-t pt-5"

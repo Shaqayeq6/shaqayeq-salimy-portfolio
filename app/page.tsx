@@ -20,10 +20,7 @@ import Footer from "@/components/portfolio/Footer";
 export default function Page() {
   const [theme, setTheme] = useState<ThemeName>("dark");
   const [profileOpen, setProfileOpen] = useState(false);
-
-  // Sidebar is open by default.
   const [menuOpen, setMenuOpen] = useState(true);
-
   const [contactOpen, setContactOpen] = useState(false);
   const [activeProjectId, setActiveProjectId] = useState("01");
   const [joySlideIndex, setJoySlideIndex] = useState(0);
@@ -44,7 +41,7 @@ export default function Page() {
   }, [profileOpen]);
 
   return (
-    <ThemeBackground currentTheme={currentTheme}>
+    <ThemeBackground currentTheme={currentTheme} menuOpen={menuOpen}>
       <Header
         theme={theme}
         setTheme={setTheme}
@@ -60,11 +57,8 @@ export default function Page() {
       />
 
       <HeroSection currentTheme={currentTheme} />
-
       <AboutSection currentTheme={currentTheme} />
-
       <EducationSection currentTheme={currentTheme} />
-
       <ExperienceSection currentTheme={currentTheme} />
 
       <ProjectsSection

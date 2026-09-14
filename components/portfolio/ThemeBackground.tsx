@@ -5,6 +5,7 @@ import { ThemeConfig } from "@/lib/types";
 
 type ThemeBackgroundProps = {
   currentTheme: ThemeConfig;
+  menuOpen: boolean;
   children: ReactNode;
 };
 
@@ -36,6 +37,7 @@ function getRgb(color: string): string {
 
 export default function ThemeBackground({
   currentTheme,
+  menuOpen,
   children,
 }: ThemeBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -184,21 +186,29 @@ export default function ThemeBackground({
         }}
       />
 
-      <main
-        className="relative mx-auto min-h-screen max-w-[1100px] overflow-x-hidden shadow-[0_0_60px_rgba(0,0,0,0.2)] transition-colors duration-300"
+      {/* This wrapper reserves real layout space for the sidebar.
+          The sidebar no longer sits on top of the portfolio content. */}
+      <div
+        className="relative min-h-screen transition-[padding] duration-300 ease-in-out"
         style={{
-          background: currentTheme.background,
-          color: currentTheme.text,
-          position: "relative",
+          paddingRight: menuOpen ? "250px" : "56px",
           zIndex: 10,
         }}
       >
-        <div
-          style={{ background: currentTheme.overlay }}
-          className="pointer-events-none absolute inset-0"
-        />
-        {children}
-      </main>
+        <main
+          className="relative mx-auto min-h-screen w-full max-w-[1100px] overflow-x-hidden shadow-[0_0_60px_rgba(0,0,0,0.2)] transition-colors duration-300"
+          style={{
+            background: currentTheme.background,
+            color: currentTheme.text,
+          }}
+        >
+          <div
+            style={{ background: currentTheme.overlay }}
+            className="pointer-events-none absolute inset-0"
+          />
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
