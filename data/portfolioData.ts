@@ -10,11 +10,10 @@ import {
 export const themeSwatches: Record<ThemeName, string> = {
   dark: "#111111",
   light: "#f5f3ef",
-  pink:  "#ec4899",
-  blue: "#3b82f6",   
-  purple: "#c4b5fd", 
+  pink: "#ec4899",
+  blue: "#3b82f6",
+  purple: "#c4b5fd",
 };
-
 
 export const themes: Record<ThemeName, ThemeConfig> = {
   dark: {
@@ -41,6 +40,7 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     shellGlowB: "rgba(255,255,255,0.06)",
     shellLine: "rgba(255,255,255,0.035)",
   },
+
   light: {
     background: "#f6f2eb",
     surface: "rgba(0,0,0,0.05)",
@@ -65,6 +65,7 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     shellGlowB: "rgba(0,0,0,0.04)",
     shellLine: "rgba(0,0,0,0.045)",
   },
+
   pink: {
     background: "#170d13",
     surface: "rgba(255,214,234,0.07)",
@@ -89,6 +90,7 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     shellGlowB: "rgba(255,213,232,0.06)",
     shellLine: "rgba(255,213,232,0.035)",
   },
+
   blue: {
     background: "#0b1220",
     surface: "rgba(219,234,254,0.07)",
@@ -113,6 +115,7 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     shellGlowB: "rgba(219,234,254,0.04)",
     shellLine: "rgba(219,234,254,0.04)",
   },
+
   purple: {
     background: "#130f22",
     surface: "rgba(237,233,254,0.07)",
@@ -158,11 +161,11 @@ export const projects: Project[] = [
     description:
       "A product-focused platform for scoring, sorting, and prioritizing feature requests using the RICE framework with editable inputs, filtering, and a clean decision-making workflow.",
     tech: ["React", "Node.js", "Express", "SQLite"],
-    image:
-      "/images/projects/RICE2.JPG",
+    image: "/images/projects/RICE2.JPG",
     type: "personal",
     github: "https://github.com/Shaqayeq6/rice-feature-prioritizer.git",
   },
+
   {
     id: "02",
     title: "YorkU Campus Navigator",
@@ -171,11 +174,11 @@ export const projects: Project[] = [
     description:
       "A campus navigation app that helps students search buildings, explore locations, and launch directions in Google Maps with a streamlined mobile-first experience.",
     tech: ["Flutter", "Dart", "SQLite", "Google Maps"],
-    image:
-      "/images/projects/YorkU.JPG",
-      type: "personal",
+    image: "/images/projects/YorkU.JPG",
+    type: "personal",
     github: "https://github.com/Shaqayeq6/yorku-campus-navigator.git",
   },
+
   {
     id: "03",
     title: "E-Commerce Store",
@@ -184,11 +187,11 @@ export const projects: Project[] = [
     description:
       "A group project, shopping platform with product browsing, wishlist, cart, checkout, order history, admin controls, and a polished full-stack flow from UI to database.",
     tech: ["React", "Node.js", "Express", "PostgreSQL"],
-    image:
-      "/images/projects/Shoe.jpg",
-      type: "school",
+    image: "/images/projects/Shoe.jpg",
+    type: "school",
     github: "https://github.com/Shaqayeq6/e-commerce-project.git",
   },
+
   {
     id: "04",
     title: "Wellness Tracker",
@@ -197,11 +200,11 @@ export const projects: Project[] = [
     description:
       "A team-developed mobile application for tracking wellness habits and daily routines, emphasizing user-friendly design, structured data management, and smooth interaction.",
     tech: ["React", "TypeScript", "UI Design"],
-    image:
-      "/images/projects/Wellness.jpg",
-      type: "school",
+    image: "/images/projects/Wellness.jpg",
+    type: "school",
     github: "https://github.com/ashal-iman/Project-Wellness-Tracker",
   },
+
   {
     id: "05",
     title: "Smart Job Tracker",
@@ -209,13 +212,12 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "Currently in development, building a smart job tracking system.",
-    tech: ["Next.js", "TypeScript","FastAPI", "PostgreSQL"],
-    image:
-      "/images/projects/ComingSoon1.png",
-      type: "personal",
-   
-    github: "#"
+    tech: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL"],
+    image: "/images/projects/ComingSoon1.png",
+    type: "personal",
+    github: "#",
   },
+
   {
     id: "06",
     title: "Portfolio Redesign System",
@@ -224,14 +226,22 @@ export const projects: Project[] = [
     description:
       "I designed and built this modular portfolio to bring together my personal and school projects, from full-stack applications to mobile development, focused on clean design, interaction, and real-world problem solving.",
     tech: ["Next.js 15", "Framer Motion", "Vercel"],
-    image:
-      "/images/projects/Portfolio.png",
-      type: "personal",
+    image: "/images/projects/Portfolio.png",
+    type: "personal",
     github: "#",
   },
 ];
 
 export const experiences: ExperienceItem[] = [
+  {
+    period: "2026",
+    title: "Software Developer Intern",
+    organization: "Maktab",
+    description:
+      "Developed a cross-platform school management application for parents, students, teachers, administrators, and volunteers. Built role-based authentication and core workflows for student records, class assignments, account management, and school operations using React Native, TypeScript, and Supabase.",
+    tags: ["React Native", "Expo", "TypeScript", "Supabase"],
+  },
+
   {
     period: "2020 - 2021",
     title: "Credential Examiner",
@@ -240,6 +250,7 @@ export const experiences: ExperienceItem[] = [
       "Verified and processed academic credentials, ensuring accuracy and adherence to policies. Linked document images to appropriate institutions and credentials, both digitally and manually, while supporting accurate evaluations based on WES procedures.",
     tags: ["Document Management Systems", "Document Imaging Software"],
   },
+
   {
     period: "2019 - 2020",
     title: "Academic Record Specialist",
@@ -248,6 +259,7 @@ export const experiences: ExperienceItem[] = [
       "Processed and matched incoming application-related mail, entered records into the tracking system, cleared scanned non-original documents, and supported the safe handling and return of original documents across departments.",
     tags: ["Tracking Systems", "Mail Management Software"],
   },
+
   {
     period: "2025 - Present",
     title: "Teaching Assistant Support / Project Consultant",
@@ -259,21 +271,96 @@ export const experiences: ExperienceItem[] = [
 ];
 
 export const skills: SkillItem[] = [
-  { name: "Java",       icon: "https://cdn.simpleicons.org/openjdk/ffffff",    group: "Languages", color: "#f89820" },
-  { name: "Spring Boot", icon: "https://cdn.simpleicons.org/springboot/ffffff", group: "Backend", color: "#6DB33F" },
-  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/ffffff", group: "Languages", color: "#F7DF1E" },
-   { name: "C",          icon: "https://cdn.simpleicons.org/c/ffffff",          group: "Languages", color: "#A8B9CC" },
-  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/ffffff", group: "Languages", color: "#3178C6" },
-  { name: "Python",     icon: "https://cdn.simpleicons.org/python/ffffff",     group: "Languages", color: "#3776AB" },
-  { name: "React",      icon: "https://cdn.simpleicons.org/react/ffffff",      group: "Frontend",  color: "#61DAFB" },
-  { name: "Next.js",    icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",  group: "Frontend",  color: "#aaaaaa" },
-  { name: "Flutter",    icon: "https://cdn.simpleicons.org/flutter/ffffff",    group: "Mobile",    color: "#02569B" },
-  { name: "Node.js",    icon: "https://cdn.simpleicons.org/nodedotjs/ffffff",  group: "Backend",   color: "#339933" },
-  { name: "Express",    icon: "https://cdn.simpleicons.org/express/ffffff",    group: "Backend",   color: "#aaaaaa" },
-   { name: "MySQL",      icon: "https://cdn.simpleicons.org/mysql/ffffff",      group: "Database",  color: "#4479A1" },
-  { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/ffffff", group: "Database",  color: "#4169E1" },
-  { name: "SQLite",     icon: "https://cdn.simpleicons.org/sqlite/ffffff",     group: "Database",  color: "#44a8dc" },
-  { name: "Figma",      icon: "https://cdn.simpleicons.org/figma/ffffff",      group: "Design",    color: "#F24E1E" },
+  {
+    name: "Java",
+    icon: "https://cdn.simpleicons.org/openjdk/ffffff",
+    group: "Languages",
+    color: "#f89820",
+  },
+  {
+    name: "Spring Boot",
+    icon: "https://cdn.simpleicons.org/springboot/ffffff",
+    group: "Backend",
+    color: "#6DB33F",
+  },
+  {
+    name: "JavaScript",
+    icon: "https://cdn.simpleicons.org/javascript/ffffff",
+    group: "Languages",
+    color: "#F7DF1E",
+  },
+  {
+    name: "C",
+    icon: "https://cdn.simpleicons.org/c/ffffff",
+    group: "Languages",
+    color: "#A8B9CC",
+  },
+  {
+    name: "TypeScript",
+    icon: "https://cdn.simpleicons.org/typescript/ffffff",
+    group: "Languages",
+    color: "#3178C6",
+  },
+  {
+    name: "Python",
+    icon: "https://cdn.simpleicons.org/python/ffffff",
+    group: "Languages",
+    color: "#3776AB",
+  },
+  {
+    name: "React",
+    icon: "https://cdn.simpleicons.org/react/ffffff",
+    group: "Frontend",
+    color: "#61DAFB",
+  },
+  {
+    name: "Next.js",
+    icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+    group: "Frontend",
+    color: "#aaaaaa",
+  },
+  {
+    name: "Flutter",
+    icon: "https://cdn.simpleicons.org/flutter/ffffff",
+    group: "Mobile",
+    color: "#02569B",
+  },
+  {
+    name: "Node.js",
+    icon: "https://cdn.simpleicons.org/nodedotjs/ffffff",
+    group: "Backend",
+    color: "#339933",
+  },
+  {
+    name: "Express",
+    icon: "https://cdn.simpleicons.org/express/ffffff",
+    group: "Backend",
+    color: "#aaaaaa",
+  },
+  {
+    name: "MySQL",
+    icon: "https://cdn.simpleicons.org/mysql/ffffff",
+    group: "Database",
+    color: "#4479A1",
+  },
+  {
+    name: "PostgreSQL",
+    icon: "https://cdn.simpleicons.org/postgresql/ffffff",
+    group: "Database",
+    color: "#4169E1",
+  },
+  {
+    name: "SQLite",
+    icon: "https://cdn.simpleicons.org/sqlite/ffffff",
+    group: "Database",
+    color: "#44a8dc",
+  },
+  {
+    name: "Figma",
+    icon: "https://cdn.simpleicons.org/figma/ffffff",
+    group: "Design",
+    color: "#F24E1E",
+  },
 ];
 
 export const joys: JoyItem[] = [
@@ -281,35 +368,35 @@ export const joys: JoyItem[] = [
     title: "Sunrise & Sunset Bike Rides",
     description:
       "Biking during sunrise and sunset hours gives me peace, movement, and a chance to reset.",
-    image:
-      "/images/biking.JPG",
+    image: "/images/biking.JPG",
   },
+
   {
     title: " Trail Hikes with Friends",
     description:
       "I enjoy hiking on trails with friends, fresh air, long walks and the kind of energy that only comes from being out in nature.",
-    image:
-      "/images/hiking2.jpg",
+    image: "/images/hiking2.jpg",
   },
+
   {
-  title: "Farsi Books & Poetry",
-  description:
-    "Reading Farsi literature and getting lost in the poetry is a soothing experience, it feels like an escape in itself, bringing a kind of depth and feeling that’s hard to find anywhere else.",
-  image: "/images/farsi-books.jpg",
-  poem: [
-    "این یک دو سه روز نوبت عمر گذشت",
-    "چون آب به جویبار و چون باد گذشت",
-    "هرگز غم دو روز مرا یاد نگشت",
-    "روزی که نیامده‌ست و روزی که گذشت",
-  ],
-  poemAuthor: "Omar Khayyam",
-},
+    title: "Farsi Books & Poetry",
+    description:
+      "Reading Farsi literature and getting lost in the poetry is a soothing experience, it feels like an escape in itself, bringing a kind of depth and feeling that’s hard to find anywhere else.",
+    image: "/images/farsi-books.jpg",
+    poem: [
+      "این یک دو سه روز نوبت عمر گذشت",
+      "چون آب به جویبار و چون باد گذشت",
+      "هرگز غم دو روز مرا یاد نگشت",
+      "روزی که نیامده‌ست و روزی که گذشت",
+    ],
+    poemAuthor: "Omar Khayyam",
+  },
+
   {
     title: "Psychology & Self-Development",
     description:
       "I also enjoy reading English books about self-development, mindset, and psychology.",
-    image:
-      "/images/books.PNG",
+    image: "/images/books.PNG",
   },
 ];
 
