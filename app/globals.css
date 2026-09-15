@@ -1,16 +1,28 @@
 @import "tailwindcss";
 
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Desktop navigation widths */
+  --menu-open-width: 250px;
+  --menu-closed-width: 56px;
 }
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,8 +31,780 @@
   }
 }
 
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+
 body {
+  margin: 0;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: hidden;
+
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   MAIN PORTFOLIO + NAVIGATION GRID
+   ========================================================= */
+
+/*
+  The portfolio and navigation are REAL grid columns.
+
+  This is the important architecture that prevents
+  portfolio content from ever going underneath the menu.
+*/
+
+.portfolio-layout {
+  position: relative;
+  z-index: 10;
+
+  display: grid;
+
+  width: 100%;
+  min-height: 100vh;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    var(--menu-closed-width);
+
+  transition:
+    grid-template-columns
+    280ms
+    ease-in-out;
+}
+
+
+/*
+  Expanded navigation
+*/
+
+.portfolio-layout.menu-open {
+  grid-template-columns:
+    minmax(0, 1fr)
+    var(--menu-open-width);
+}
+
+
+/*
+  Collapsed navigation
+*/
+
+.portfolio-layout.menu-closed {
+  grid-template-columns:
+    minmax(0, 1fr)
+    var(--menu-closed-width);
+}
+
+
+/* =========================================================
+   PORTFOLIO COLUMN
+   ========================================================= */
+
+.portfolio-column {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: hidden;
+}
+
+
+.portfolio-column main {
+  width: 100%;
+  min-width: 0;
+}
+
+
+.portfolio-column section {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+
+/*
+  Prevent media from creating an intrinsic width larger
+  than the available portfolio column.
+*/
+
+.portfolio-column img,
+.portfolio-column video,
+.portfolio-column svg {
+  max-width: 100%;
+}
+
+
+/*
+  Allow text containers to shrink properly.
+*/
+
+.portfolio-column h1,
+.portfolio-column h2,
+.portfolio-column h3,
+.portfolio-column p,
+.portfolio-column a,
+.portfolio-column span,
+.portfolio-column blockquote {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   NAVIGATION COLUMN
+   ========================================================= */
+
+/*
+  The column remains part of the grid.
+
+  align-self:start is important because the sticky menu
+  should not become a giant stretched grid item.
+*/
+
+.navigation-column {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  z-index: 80;
+
+  align-self: start;
+
+  /*
+    Do not use overflow:hidden or overflow:auto here.
+    Sticky positioning needs the document scroll.
+  */
+  overflow: visible;
+}
+
+
+/*
+  NavigationMenu itself fills its real grid column.
+*/
+
+.portfolio-menu {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   FLOATING CONTACT BUTTON
+   ========================================================= */
+
+/*
+  The button is still fixed vertically so it follows
+  the user while scrolling.
+
+  However, its RIGHT boundary is tied to the navigation
+  width, meaning it belongs visually to the portfolio
+  column instead of the entire viewport.
+*/
+
+.floating-contact-wrapper {
+  position: fixed;
+
+  left: 24px;
+
+  right:
+    calc(
+      var(--menu-closed-width) + 24px
+    );
+
+  bottom: 24px;
+
+  z-index: 60;
+
+  display: flex;
+  justify-content: flex-start;
+
+  min-width: 0;
+
+  pointer-events: none;
+
+  transition:
+    right
+    280ms
+    ease-in-out;
+}
+
+
+/*
+  Expanded navigation:
+  move the button boundary left by the exact menu width.
+*/
+
+.portfolio-layout.menu-open
+.floating-contact-wrapper {
+  right:
+    calc(
+      var(--menu-open-width) + 24px
+    );
+}
+
+
+/*
+  Collapsed navigation.
+*/
+
+.portfolio-layout.menu-closed
+.floating-contact-wrapper {
+  right:
+    calc(
+      var(--menu-closed-width) + 24px
+    );
+}
+
+
+/*
+  Actual button.
+*/
+
+.floating-contact-button {
+  width: fit-content;
+
+  max-width:
+    min(
+      100%,
+      260px
+    );
+
+  min-width: 0;
+
+  gap: 16px;
+
+  padding:
+    16px
+    20px;
+
+  pointer-events: auto;
+}
+
+
+/*
+  Dot icon must never be squashed.
+*/
+
+.floating-contact-dots {
+  flex-shrink: 0;
+}
+
+
+/*
+  Text is allowed to shorten if there isn't enough room.
+*/
+
+.floating-contact-text {
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media
+  (min-width: 768px)
+  and
+  (max-width: 1100px) {
+
+  :root {
+    --menu-open-width: 210px;
+    --menu-closed-width: 52px;
+  }
+
+
+  .floating-contact-wrapper {
+    left: 20px;
+    bottom: 20px;
+  }
+
+
+  .portfolio-layout.menu-open
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-open-width) + 20px
+      );
+  }
+
+
+  .portfolio-layout.menu-closed
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-closed-width) + 20px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  :root {
+    /*
+      Navigation remains a REAL column.
+
+      Portfolio receives:
+      viewport width - navigation width.
+    */
+
+    --menu-open-width: 118px;
+    --menu-closed-width: 36px;
+  }
+
+
+  /* =====================================================
+     MOBILE CONTENT SHRINKING
+     ===================================================== */
+
+  /*
+    Explicitly allow every important content container
+    to shrink with the portfolio grid column.
+  */
+
+  .portfolio-column,
+  .portfolio-column main,
+  .portfolio-column section,
+  .portfolio-column article,
+  .portfolio-column div {
+    min-width: 0;
+  }
+
+
+  /*
+    When navigation is expanded, the portfolio column is
+    narrower.
+
+    Reduce section padding so the content still has
+    comfortable usable space.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+
+  /*
+    HeroSection has its padding on the inner div rather
+    than the section itself.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  section:first-of-type
+  > div {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+
+  /* =====================================================
+     MOBILE TYPOGRAPHY
+     ===================================================== */
+
+  /*
+    All text must wrap inside the real portfolio width.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  h1,
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  h2,
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  h3,
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  p,
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  blockquote {
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: normal;
+  }
+
+
+  /*
+    Hero name scales down when the navigation is open.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  h1 {
+    font-size:
+      clamp(
+        2rem,
+        10vw,
+        3.1rem
+      ) !important;
+
+    line-height:
+      0.98 !important;
+  }
+
+
+  /*
+    Section headings also adapt.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  h2 {
+    font-size:
+      clamp(
+        1.25rem,
+        6vw,
+        1.75rem
+      ) !important;
+
+    line-height:
+      1.3 !important;
+  }
+
+
+  /* =====================================================
+     MOBILE GRIDS
+     ===================================================== */
+
+  /*
+    When the navigation is open, multi-column layouts
+    become single-column layouts inside the narrower
+    portfolio area.
+  */
+
+  .portfolio-layout.menu-open
+  #about .grid,
+
+  .portfolio-layout.menu-open
+  #education .grid,
+
+  .portfolio-layout.menu-open
+  #experience .grid,
+
+  .portfolio-layout.menu-open
+  #projects .grid,
+
+  .portfolio-layout.menu-open
+  #skills .grid,
+
+  .portfolio-layout.menu-open
+  #joy .grid {
+    grid-template-columns:
+      minmax(0, 1fr) !important;
+  }
+
+
+  /* =====================================================
+     PROJECTS
+     ===================================================== */
+
+  .portfolio-layout.menu-open
+  #projects article,
+
+  .portfolio-layout.menu-open
+  #projects button {
+    width: 100%;
+
+    max-width: 100%;
+
+    min-width: 0;
+  }
+
+
+  /* =====================================================
+     IMAGES
+     ===================================================== */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  img {
+    max-width: 100%;
+  }
+
+
+  /* =====================================================
+     FLOATING CONTACT — MOBILE
+     ===================================================== */
+
+  .floating-contact-wrapper {
+    left: 14px;
+
+    bottom: 14px;
+
+    min-width: 0;
+  }
+
+
+  /*
+    OPEN MENU
+
+    Button's right boundary ends BEFORE the navigation.
+  */
+
+  .portfolio-layout.menu-open
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-open-width) + 12px
+      );
+  }
+
+
+  /*
+    CLOSED MENU
+  */
+
+  .portfolio-layout.menu-closed
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-closed-width) + 12px
+      );
+  }
+
+
+  .floating-contact-button {
+    width: fit-content;
+
+    max-width: 100%;
+
+    min-width: 0;
+
+    gap: 8px;
+
+    padding:
+      11px
+      13px;
+
+    font-size: 13px;
+  }
+
+
+  /*
+    Slightly shrink dots on mobile.
+  */
+
+  .floating-contact-dots {
+    gap: 2px;
+  }
+
+
+  .floating-contact-dots > span {
+    width: 4px;
+    height: 4px;
+  }
+
+
+  /*
+    Text truncates instead of entering the menu column.
+  */
+
+  .floating-contact-text {
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  :root {
+    --menu-open-width: 112px;
+    --menu-closed-width: 34px;
+  }
+
+
+  /*
+    Slightly smaller content padding while the menu
+    is expanded.
+  */
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  section {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+
+  .portfolio-layout.menu-open
+  .portfolio-column
+  section:first-of-type
+  > div {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+
+  /*
+    Compact floating button.
+  */
+
+  .floating-contact-wrapper {
+    left: 10px;
+    bottom: 10px;
+  }
+
+
+  .portfolio-layout.menu-open
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-open-width) + 10px
+      );
+  }
+
+
+  .portfolio-layout.menu-closed
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-closed-width) + 10px
+      );
+  }
+
+
+  .floating-contact-button {
+    gap: 6px;
+
+    padding:
+      9px
+      10px;
+
+    font-size: 11px;
+  }
+
+
+  .floating-contact-dots > span {
+    width: 3px;
+    height: 3px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  :root {
+    --menu-open-width: 104px;
+    --menu-closed-width: 32px;
+  }
+
+
+  .floating-contact-wrapper {
+    left: 8px;
+    bottom: 8px;
+  }
+
+
+  .portfolio-layout.menu-open
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-open-width) + 8px
+      );
+  }
+
+
+  .portfolio-layout.menu-closed
+  .floating-contact-wrapper {
+    right:
+      calc(
+        var(--menu-closed-width) + 8px
+      );
+  }
+
+
+  .floating-contact-button {
+    max-width: 100%;
+
+    gap: 5px;
+
+    padding:
+      8px
+      9px;
+
+    font-size: 10px;
+  }
+
+
+  .floating-contact-dots {
+    gap: 1.5px;
+  }
+
+
+  .floating-contact-dots > span {
+    width: 3px;
+    height: 3px;
+  }
+
 }

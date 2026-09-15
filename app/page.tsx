@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { themes } from "@/data/portfolioData";
 import { ThemeName } from "@/lib/types";
+
 import ThemeBackground from "@/components/portfolio/ThemeBackground";
 import Header from "@/components/portfolio/Header";
 import NavigationMenu from "@/components/portfolio/NavigationMenu";
@@ -37,11 +38,24 @@ export default function Page() {
     };
 
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
   }, [profileOpen]);
 
   return (
-    <ThemeBackground currentTheme={currentTheme} menuOpen={menuOpen}>
+    <ThemeBackground
+      currentTheme={currentTheme}
+      menuOpen={menuOpen}
+      navigation={
+        <NavigationMenu
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          currentTheme={currentTheme}
+        />
+      }
+    >
       <Header
         theme={theme}
         setTheme={setTheme}
@@ -50,15 +64,12 @@ export default function Page() {
         setProfileOpen={setProfileOpen}
       />
 
-      <NavigationMenu
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        currentTheme={currentTheme}
-      />
-
       <HeroSection currentTheme={currentTheme} />
+
       <AboutSection currentTheme={currentTheme} />
+
       <EducationSection currentTheme={currentTheme} />
+
       <ExperienceSection currentTheme={currentTheme} />
 
       <ProjectsSection

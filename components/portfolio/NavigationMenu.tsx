@@ -16,7 +16,7 @@ const navigationItems = [
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
-  { label: "Beyond the code", href: "#joy" },
+  { label: "Beyond code", href: "#joy" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -26,107 +26,245 @@ export default function NavigationMenu({
   currentTheme,
 }: NavigationMenuProps) {
   return (
-    <motion.aside
-      initial={false}
-      animate={{ width: menuOpen ? 250 : 56 }}
-      transition={{ duration: 0.28, ease: "easeInOut" }}
-      className="fixed right-0 top-0 z-[80] h-screen overflow-hidden border-l backdrop-blur-2xl"
-      style={{
-        background: `linear-gradient(
-          180deg,
-          ${currentTheme.background}F7 0%,
-          ${currentTheme.sidePanel}F8 100%
-        )`,
-        color: currentTheme.text,
-        borderColor: currentTheme.border,
-        boxShadow: menuOpen
-          ? "-12px 0 38px rgba(0,0,0,0.16)"
-          : "-5px 0 18px rgba(0,0,0,0.10)",
-      }}
-    >
-      <div className="flex h-full flex-col">
+    <aside className="h-full w-full">
+      {/*
+        IMPORTANT:
+
+        The parent grid column still exists and reserves
+        space for the navigation.
+
+        This inner panel is fixed so the actual navigation
+        stays on screen while the portfolio scrolls.
+      */}
+      <div
+        className="
+          fixed
+          right-0
+          top-0
+          z-[80]
+          flex
+          h-[100dvh]
+          flex-col
+          overflow-hidden
+          border-l
+          backdrop-blur-2xl
+          transition-[width]
+          duration-300
+          ease-in-out
+        "
+        style={{
+          width: menuOpen
+            ? "var(--menu-open-width)"
+            : "var(--menu-closed-width)",
+
+          background: `linear-gradient(
+            180deg,
+            ${currentTheme.background} 0%,
+            ${currentTheme.sidePanel} 100%
+          )`,
+
+          color: currentTheme.text,
+          borderColor: currentTheme.border,
+
+          boxShadow: menuOpen
+            ? "-8px 0 28px rgba(0,0,0,0.14)"
+            : "-4px 0 16px rgba(0,0,0,0.10)",
+        }}
+      >
+        {/* =========================================
+            TOGGLE
+        ========================================= */}
+
         <div
-          className={`flex h-20 shrink-0 items-center ${
-            menuOpen ? "justify-end px-4" : "justify-center"
-          }`}
+          className={`
+            flex
+            h-16
+            shrink-0
+            items-center
+            md:h-20
+
+            ${
+              menuOpen
+                ? "justify-end px-2 md:px-4"
+                : "justify-center"
+            }
+          `}
         >
           <motion.button
             type="button"
-            aria-label={menuOpen ? "Collapse navigation" : "Expand navigation"}
+            aria-label={
+              menuOpen
+                ? "Collapse navigation"
+                : "Expand navigation"
+            }
             onClick={() => setMenuOpen((prev) => !prev)}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="flex h-10 w-10 items-center justify-center rounded-full border"
+            className="
+              flex
+              h-8
+              w-8
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              border
+              md:h-10
+              md:w-10
+            "
             style={{
               borderColor: currentTheme.border,
               background: currentTheme.surface,
               color: currentTheme.textSoft,
-              boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
+              boxShadow: "0 6px 18px rgba(0,0,0,0.13)",
             }}
           >
             <motion.svg
               viewBox="0 0 24 24"
-              className="h-4 w-4"
+              className="h-3.5 w-3.5 md:h-4 md:w-4"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"
-              animate={{ rotate: menuOpen ? 0 : 180 }}
-              transition={{ duration: 0.25 }}
+              animate={{
+                rotate: menuOpen ? 0 : 180,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
             >
               <path d="M15 6l-6 6 6 6" />
             </motion.svg>
           </motion.button>
         </div>
 
-        <AnimatePresence mode="wait">
+        {/* =========================================
+            OPEN MENU
+        ========================================= */}
+
+        <AnimatePresence initial={false} mode="wait">
           {menuOpen && (
             <motion.div
               key="expanded-navigation"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              transition={{ duration: 0.18 }}
-              className="flex min-h-0 flex-1 flex-col px-5 pb-6"
+              initial={{
+                opacity: 0,
+                x: 8,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              exit={{
+                opacity: 0,
+                x: 8,
+              }}
+              transition={{
+                duration: 0.18,
+              }}
+              className="
+                flex
+                min-h-0
+                flex-1
+                flex-col
+                px-3
+                pb-4
+                md:px-5
+                md:pb-6
+              "
             >
+              {/* Navigation label */}
+
               <p
-                className="text-[10px] uppercase tracking-[0.28em]"
-                style={{ color: currentTheme.textMuted }}
+                className="
+                  whitespace-nowrap
+                  text-[7px]
+                  uppercase
+                  tracking-[0.18em]
+                  md:text-[10px]
+                  md:tracking-[0.28em]
+                "
+                style={{
+                  color: currentTheme.textMuted,
+                }}
               >
                 Navigation
               </p>
 
-              <nav className="mt-6 flex flex-col gap-1">
+              {/* Navigation links */}
+
+              <nav className="mt-4 flex flex-col gap-0.5 md:mt-6 md:gap-1">
                 {navigationItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="group relative rounded-xl px-3 py-2.5 text-base font-light transition duration-200"
-                    style={{ color: currentTheme.text }}
+                    className="
+                      group
+                      relative
+                      block
+                      min-w-0
+                      rounded-lg
+                      px-1
+                      py-2
+                      text-[11px]
+                      font-light
+                      leading-[1.3]
+                      md:rounded-xl
+                      md:px-3
+                      md:py-2.5
+                      md:text-base
+                    "
+                    style={{
+                      color: currentTheme.text,
+                    }}
                   >
                     <span
-                      className="absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100"
-                      style={{ background: currentTheme.surface }}
+                      className="
+                        absolute
+                        inset-0
+                        rounded-lg
+                        opacity-0
+                        transition
+                        group-hover:opacity-100
+                        md:rounded-xl
+                      "
+                      style={{
+                        background: currentTheme.surface,
+                      }}
                     />
-                    <span className="relative block transition-transform duration-200 group-hover:translate-x-1">
+
+                    <span className="relative block">
                       {item.label}
                     </span>
                   </a>
                 ))}
               </nav>
 
+              {/* =====================================
+                  BOTTOM SOCIAL LINKS
+              ===================================== */}
+
               <div
-                className="mt-auto border-t pt-5"
-                style={{ borderColor: currentTheme.border }}
+                className="
+                  mt-auto
+                  shrink-0
+                  border-t
+                  pt-3
+                  md:pt-5
+                "
+                style={{
+                  borderColor: currentTheme.border,
+                }}
               >
-                <div className="flex flex-col gap-2 text-sm">
+                <div className="flex flex-col gap-2 text-[9px] md:text-sm">
                   <a
                     href="https://www.linkedin.com/in/shaqayeqsalimy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition duration-200 hover:translate-x-1"
-                    style={{ color: currentTheme.textMuted }}
+                    className="transition-opacity hover:opacity-100"
+                    style={{
+                      color: currentTheme.textMuted,
+                    }}
                   >
                     LinkedIn
                   </a>
@@ -135,8 +273,10 @@ export default function NavigationMenu({
                     href="https://github.com/Shaqayeq6"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition duration-200 hover:translate-x-1"
-                    style={{ color: currentTheme.textMuted }}
+                    className="transition-opacity hover:opacity-100"
+                    style={{
+                      color: currentTheme.textMuted,
+                    }}
                   >
                     GitHub
                   </a>
@@ -146,17 +286,31 @@ export default function NavigationMenu({
           )}
         </AnimatePresence>
 
+        {/* =========================================
+            COLLAPSED MENU
+        ========================================= */}
+
         {!menuOpen && (
-          <div className="flex flex-1 items-center justify-center">
+          <div className="flex min-h-0 flex-1 items-center justify-center">
             <span
-              className="[writing-mode:vertical-rl] rotate-180 text-[9px] uppercase tracking-[0.32em]"
-              style={{ color: currentTheme.textMuted }}
+              className="
+                [writing-mode:vertical-rl]
+                rotate-180
+                whitespace-nowrap
+                text-[7px]
+                uppercase
+                tracking-[0.28em]
+                md:text-[9px]
+              "
+              style={{
+                color: currentTheme.textMuted,
+              }}
             >
               Menu
             </span>
           </div>
         )}
       </div>
-    </motion.aside>
+    </aside>
   );
 }
